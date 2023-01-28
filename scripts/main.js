@@ -56,17 +56,30 @@ function createVariables(response) {
 
 function addToSearchHistory(city) {
     // check list exists, else create
+    if (!localStorage.cityHistory) {
+        localStorage.setItem('cityHistory', JSON.stringify([]));
+    }
     // check city exists, else add
-
+    let cityArray = JSON.parse(localStorage.getItem('cityHistory'));
+    if (!cityArray.includes(city)) {
+        cityArray.push(city);
+    }
+    return;
 }
+
 function createCityBtns(city) {
     //  get from local storage
     // loop over local to get city
     // create btn with name, value and event
 }
-function searchHistory() {
+function getFromLocal(city) {
     // get from local storage
-    // place in local storage
+    let cityArray = JSON.parse(localStorage.getItem('cityHistory'));
+    cityArray.push(city);
+}
+
+function updateToLocal(cityArray) {
+    localStorage.setItem('cityHistory', JSON.stringify(cityArray));
 }
 
 function currentWeatherBanner(city) {

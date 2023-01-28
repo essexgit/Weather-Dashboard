@@ -1,9 +1,12 @@
 let cityInput = $("#search-form");
 let cityButtonInput = $("#history");
 let cityName = $("#search-input");
+let currentCity = chosenFromLocal();
+let cityChoices = getHistoryFromLocal();
+
 var APIKey = "0aac0c39745eba9e97fdc23093a6dd16";
 
-// from search submin
+// from search submit
 cityInput.on("submit", function (event) {
     event.preventDefault();
     let cityCall = cityName.val();
@@ -12,11 +15,16 @@ cityInput.on("submit", function (event) {
         url: queryForcastURL,
         method: 'GET'
     }).then(function (response) {
-        addToSearchHistory(response.city.name);
+        let city = response.city.name;
+        addToSearchHistory(city);
+        chosenToLocal(city);
         createVariables(response);
+        let newCityBtn = generateBtn(city);
+        cityButtonInput.append(newCityBtn);
     });
 });
 
+// from button submit
 cityButtonInput.on("submit", function (event) {
     event.preventDefault();
     let queryForcastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" +
@@ -25,6 +33,7 @@ cityButtonInput.on("submit", function (event) {
         url: queryForcastURL,
         method: 'GET'
     }).then(function (response) {
+        chosenToLocal(response.city.name);
         createVariables(response);
     });
 });
@@ -64,22 +73,46 @@ function addToSearchHistory(city) {
     if (!cityArray.includes(city)) {
         cityArray.push(city);
     }
+    updateHistoryToLocal(cityArray);
     return;
 }
 
-function createCityBtns(city) {
-    //  get from local storage
-    // loop over local to get city
+function createCityBtns(cityArray) {
+    getHistoryFromLocal;
+    // loop over Array to get city
+
+
     // create btn with name, value and event
-}
-function getFromLocal(city) {
-    // get from local storage
-    let cityArray = JSON.parse(localStorage.getItem('cityHistory'));
-    cityArray.push(city);
+
 }
 
-function updateToLocal(cityArray) {
+function generateBtn(city) {
+    let btn = $("<button class=\"cityBtn\">");
+    btn.attr("id", city);
+    btn.append(city);
+    return btn;
+}
+
+function getHistoryFromLocal() {
+    // get from local storage
+    return JSON.parse(localStorage.getItem('cityHistory'));
+}
+
+function updateHistoryToLocal(cityArray) {
     localStorage.setItem('cityHistory', JSON.stringify(cityArray));
+}
+
+function chosenToLocal(city) {
+    // check last chosen exists or create it
+    if (!localStorage.lastChoice) {
+        localStorage.setItem('lastChoice', JSON.stringify(""));
+    }
+    localStorage.setItem('lastChoice', JSON.stringify(city));
+}
+
+function chosenFromLocal() {
+    if (localStorage.lastChoice) { return JSON.parse(localStorage.getItem('lastChoice')); }
+    return;
 }
 
 function currentWeatherBanner(city) {

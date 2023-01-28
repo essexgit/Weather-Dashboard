@@ -1,13 +1,26 @@
 let cityInput = $("#search-form");
+let cityButtonInput = $("#history");
 let cityName = $("#search-input");
 var APIKey = "0aac0c39745eba9e97fdc23093a6dd16";
 
-
+// from search submin
 cityInput.on("submit", function (event) {
     event.preventDefault();
     let cityCall = cityName.val();
     let queryForcastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityCall + "&appid=" + APIKey;
-    console.log(queryForcastURL);
+    $.ajax({
+        url: queryForcastURL,
+        method: 'GET'
+    }).then(function (response) {
+        addToSearchHistory(response.city.name);
+        createVariables(response);
+    });
+});
+
+cityButtonInput.on("submit", function (event) {
+    event.preventDefault();
+    let queryForcastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" +
+        + "&appid=" + APIKey;
     $.ajax({
         url: queryForcastURL,
         method: 'GET'
@@ -15,7 +28,9 @@ cityInput.on("submit", function (event) {
         createVariables(response);
     });
 });
+
 function createVariables(response) {
+    //CurrentCityNow
     let city = response.city.name;
     let rl = response.list;
     let nowIcon = rl[0].weather[0].icon;
@@ -23,7 +38,7 @@ function createVariables(response) {
     let nowTemp = rl[0].main.temp;
     let nowHumidity = rl[0].main.humidity;
     let nowWindSpeed = rl[0].wind.speed;
-
+    //CurrentCity5Day
     for (let index = 7; index < rl.length; index += 8) {
         let icon = rl[index].weather[0].icon;
         let instant = rl[index].dt;
@@ -37,5 +52,28 @@ function createVariables(response) {
         console.log(humidity);
         console.log(windSpeed);
     }
+}
+
+function addToSearchHistory(city) {
+    // check list exists, else create
+    // check city exists, else add
 
 }
+function createCityBtns(city) {
+    //  get from local storage
+    // loop over local to get city
+    // create btn with name, value and event
+}
+function searchHistory() {
+    // get from local storage
+    // place in local storage
+}
+
+function currentWeatherBanner(city) {
+
+}
+
+function futureWeatherCards(city) {
+
+}
+

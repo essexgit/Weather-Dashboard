@@ -26,14 +26,17 @@ cityInput.on("submit", function (event) {
 });
 
 // from button submit
-cityButtonInput.on("submit", function (event) {
+cityButtonInput.on("click", function (event) {
     event.preventDefault();
+    let city = $(event.target).attr("id");
+    console.log(city);
     let queryForcastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" +
-        + "&appid=" + APIKey;
+        city + "&appid=" + APIKey;
     $.ajax({
         url: queryForcastURL,
         method: 'GET'
     }).then(function (response) {
+        console.log(response);
         chosenToLocal(response.city.name);
         createVariables(response);
     });

@@ -3,6 +3,7 @@ let cityButtonInput = $("#history");
 let cityName = $("#search-input");
 let currentCity = chosenFromLocal();
 let cityChoices = getHistoryFromLocal();
+createCityBtns();
 
 var APIKey = "0aac0c39745eba9e97fdc23093a6dd16";
 
@@ -78,11 +79,11 @@ function addToSearchHistory(city) {
 }
 
 function createCityBtns(cityArray) {
-    getHistoryFromLocal;
     // loop over Array to get city
-
-
-    // create btn with name, value and event
+    cityChoices.forEach(city => {
+        let newCityBtn = generateBtn(city);
+        cityButtonInput.append(newCityBtn);
+    });
 
 }
 

@@ -11,7 +11,7 @@ cityInput.on("submit", function (event) {
     event.preventDefault();
     let cityCall = cityName.val();
 
-    let queryForecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityCall + "&appid=" + APIKey;
+    let queryForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityCall + "&appid=" + APIKey;
 
     $.ajax({
         url: queryForecastURL,
@@ -33,7 +33,7 @@ cityButtonInput.on("click", function (event) {
     event.preventDefault();
     let cityGrab = $(event.target).attr("id");
 
-    let queryForecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" +
+    let queryForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" +
         cityGrab + "&appid=" + APIKey;
     $.ajax({
         url: queryForecastURL,
@@ -48,7 +48,7 @@ cityButtonInput.on("click", function (event) {
 function cityOnLoad() {
     let cityInit = chosenFromLocal();
 
-    let queryForecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityInit + "&appid=" + APIKey;
+    let queryForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityInit + "&appid=" + APIKey;
     $.ajax({
         url: queryForecastURL,
         method: 'GET'
@@ -62,7 +62,7 @@ function createVariables(response) {
     let cityJumbo = response.city.name;
     let rl = response.list;
     let nowIconCode = rl[0].weather[0].icon;
-    let nowIconImage = "http://openweathermap.org/img/wn/" + nowIconCode + "@2x.png";
+    let nowIconImage = "https://openweathermap.org/img/wn/" + nowIconCode + "@2x.png";
     let weatherIcon = $(`<img src="${nowIconImage}"/>`);
     let nowInstant = rl[0].dt;
     let nowDate = moment.unix(nowInstant).format("DD/MM/yy");
@@ -77,7 +77,7 @@ function createVariables(response) {
     //CurrentCity5Day
     for (let index = 7; index < rl.length; index += 8) {
         let iconCode = rl[index].weather[0].icon;
-        let iconImage = "http://openweathermap.org/img/wn/" + iconCode + ".png";
+        let iconImage = "https://openweathermap.org/img/wn/" + iconCode + ".png";
         let weatherIcon = $(`<img src="${iconImage}"/>`);
         let instant = rl[index].dt;
         let date = moment.unix(instant).format("DD/MM/yy");

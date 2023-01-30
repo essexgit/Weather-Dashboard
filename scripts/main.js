@@ -10,9 +10,7 @@ cityOnLoad();
 cityInput.on("submit", function (event) {
     event.preventDefault();
     let cityCall = cityName.val();
-
     let queryForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityCall + "&appid=" + APIKey;
-
     $.ajax({
         url: queryForecastURL,
         method: 'GET'
@@ -20,11 +18,11 @@ cityInput.on("submit", function (event) {
         let cityForm = response.city.name;
         addToSearchHistory(cityForm);
         chosenToLocal(cityForm);
+        cityName.val('');
         let newCityBtn = generateBtn(cityForm);
         cityButtonInput.append(newCityBtn);
         createVariables(response);
     });
-    cityName.text('');
 }
 );
 
@@ -45,9 +43,9 @@ cityButtonInput.on("click", function (event) {
     });
 });
 
+// initial pull from local storage to create buttons
 function cityOnLoad() {
     let cityInit = chosenFromLocal();
-
     let queryForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityInit + "&appid=" + APIKey;
     $.ajax({
         url: queryForecastURL,

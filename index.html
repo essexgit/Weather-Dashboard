@@ -13,84 +13,99 @@
   </head>
 
   <body>
-    <header class="container-fluid text-center text-white bg-dark p-2 weather-header ">
+    <header class="container-fluid text-center bannerHeading p-2 weather-header">
       <h1>Weather Dashboard</h1>
     </header>
 
     <!-- max-width for ultra wide resolutions -->
     <div class="container-fluid" style="max-width: 1400px">
-      <div class="row">
-        <aside class="col-lg-3 pb-3  ">
-          <h2 id="form-heading" class="mt-1 h3 form-label">
+      <div class="card-deck">
+        <aside class="col-lg-3 pb-3">
+          <h2 id="form-heading" class="mt-1 h4 form-label">
             Search for a City:
           </h2>
-          <form id="search-form" class="form">
-            <div class="form-inline form-group">
+          <form id="search-form" class="form" style="border: 1px solid black;">
+            <div class="form-inline form-group  flex-column card-deck">
               <div class="input-group">
-                <input class="form-input weather-search" type="text" id="search-input" placeholder="London"
+                <input class="form-input  weather-search col-xl" type="text" id="search-input" placeholder="London"
                   aria-labelledby="form-heading" aria-controls="today forecast" />
-                <div class="input-group-append">
-                  <button type="submit" class="btn-block search-button" id="search-button" aria-label="submit search">
-                    Search
-                  </button>
-                  <hr class="hr weather-hr" />
-                </div>
               </div>
+              <div class="input-group-append">
+                <button type="submit" class="searchBtn" id="search-button" aria-label="submit search">
+                  Search
+                </button>
+              </div>
+              <hr class="hr weather-hr" />
             </div>
           </form>
-          <div class="list-group " id="history"></div>
+          <div class="list-group" id="history"></div>
         </aside>
 
-        <div class="col-lg-9 pb-3 border container-fluid">
-          <section id="today" class="mt-3 " role="region" aria-live="polite">
+        <div class="col-lg-9 pb-3  container-fluid">
+          <section class="mt-3" role="region" aria-live="polite">
             <div class="jumbotron jumbotron-fluid">
               <div class="container">
-                <h1 class="display-4">Fluid jumbotron</h1>
-                <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.
-                </p>
+                <h1 class="title" id="today"></h1>
+                <p class="lead" id="today-temp"></p>
+                <p class="lead" id="today-wind"></p>
+                <p class="lead" id="today-humidity"></p>
               </div>
             </div>
           </section>
-          <section id="forecast" class="row mt-3 border" role="region" aria-live="polite">
-            <h2 class="container-fluid display-5 border">5 Day Forecast</h2>
+          <section id="forecast" class="row mt-3" role="region" aria-live="polite">
+            <h2 class="container-fluid display-5">5 Day Forecast</h2>
             <div class="card-deck">
               <div class="card" style="width: 20%">
                 <div class="card-body">
-                  <h5 class="card-title">24hrs</h5>
-                  <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus quae quidem
-                    quisquam omnis amet natus ducimus necessitatibus, quos fugiat eveniet.</p>
+                  <h4 class="card-title" id="Date1"></h4>
+                  <p class="card-title display-5" id="Icon1"></p>
+                  <p class="card-title display-5" id="Temp1"></p>
+                  <p class="card-title display-5" id="Wind1"></p>
+                  <p class="card-title display-5" id="Humidity1"></p>
                 </div>
               </div>
+
               <div class="card" style="width: 20%">
                 <div class="card-body">
-                  <h5 class="card-title">24hrs</h5>
-                  <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus quae quidem
-                    quisquam omnis amet natus ducimus necessitatibus, quos fugiat eveniet.</p>
+                  <h4 class="card-title" id="Date2"></h4>
+                  <p class="card-title display-5" id="Icon2"></p>
+                  <p class="card-title display-5" id="Temp2"></p>
+                  <p class="card-title display-5" id="Wind2"></p>
+                  <p class="card-title display-5" id="Humidity2"></p>
                 </div>
               </div>
+
               <div class="card" style="width: 20%">
                 <div class="card-body">
-                  <h5 class="card-title">24hrs</h5>
-                  <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus quae quidem
-                    quisquam omnis amet natus ducimus necessitatibus, quos fugiat eveniet.</p>
+                  <h4 class="card-title" id="Date3"></h4>
+                  <p class="card-title display-5" id="Icon3"></p>
+                  <p class="card-title display-5" id="Temp3"></p>
+                  <p class="card-title display-5" id="Wind3"></p>
+                  <p class="card-title display-5" id="Humidity3"></p>
                 </div>
               </div>
+
+
               <div class="card" style="width: 20%">
                 <div class="card-body">
-                  <h5 class="card-title">24hrs</h5>
-                  <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus quae quidem
-                    quisquam omnis amet natus ducimus necessitatibus, quos fugiat eveniet.</p>
+                  <h4 class="card-title" id="Date4"></h4>
+                  <p class="card-title display-5" id="Icon4"></p>
+                  <p class=" card-title display-5" id="Temp4"></p>
+                  <p class=" card-title display-5" id="Wind4"></p>
+                  <p class=" card-title display-5" id="Humidity4"></p>
                 </div>
               </div>
-              <div class="card" style="width: 20%">
+
+              <div class=" card" style="width: 20%">
                 <div class="card-body">
-                  <h5 class="card-title">24hrs</h5>
-                  <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus quae quidem
-                    quisquam omnis amet natus ducimus necessitatibus, quos fugiat eveniet.</p>
+                  <h4 class="card-title" id="Date5"></h4>
+                  <p class="card-title display-5" id="Icon5"></p>
+                  <p class="card-title display-5" id="Temp5"></p>
+                  <p class="card-title display-5" id="Wind5"></p>
+                  <p class="card-title display-5" id="Humidity5"></p>
                 </div>
               </div>
             </div>
-
           </section>
         </div>
       </div>

@@ -2,7 +2,6 @@ let cityInput = $("#search-form");
 let cityButtonInput = $("#history");
 let cityName = $("#search-input");
 var APIKey = "0aac0c39745eba9e97fdc23093a6dd16";
-
 createCityBtns();
 cityOnLoad();
 
@@ -25,6 +24,7 @@ cityInput.on("submit", function (event) {
         cityButtonInput.append(newCityBtn);
         createVariables(response);
     });
+    cityName.text('');
 }
 );
 
@@ -150,7 +150,7 @@ function chosenToLocal(city) {
 function chosenFromLocal() {
     // check last chosen exists or create it
     if (!localStorage.lastChoice) {
-        localStorage.setItem('lastChoice', JSON.stringify(""));
+        localStorage.setItem('lastChoice', JSON.stringify("London"));
     }
     return JSON.parse(localStorage.getItem('lastChoice'));
 }

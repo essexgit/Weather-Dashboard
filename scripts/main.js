@@ -19,6 +19,7 @@ cityInput.on("submit", function (event) {
         addToSearchHistory(cityForm);
         chosenToLocal(cityForm);
         cityName.val('');
+
         let newCityBtn = generateBtn(cityForm);
         cityButtonInput.append(newCityBtn);
         createVariables(response);
@@ -106,7 +107,7 @@ function addToSearchHistory(cityAdd) {
     updateHistoryToLocal(cityArray);
     return;
 }
-
+// loading stored history to screen
 function createCityBtns() {
     // get history
     let cityChoices = getHistoryFromLocal();
@@ -115,7 +116,6 @@ function createCityBtns() {
         let newCityBtn = generateBtn(city);
         cityButtonInput.append(newCityBtn);
     });
-
 }
 
 function generateBtn(cityBtnNew) {
@@ -133,10 +133,11 @@ function getHistoryFromLocal() {
     return JSON.parse(localStorage.getItem('cityHistory'));
 }
 
+// maintain sync between app and local storage for history
 function updateHistoryToLocal(cityArray) {
     localStorage.setItem('cityHistory', JSON.stringify(cityArray));
 }
-
+// maintain sync between app and local storage for current choice
 function chosenToLocal(city) {
     // check last chosen exists or create it
     if (!localStorage.lastChoice) {
@@ -145,6 +146,7 @@ function chosenToLocal(city) {
     localStorage.setItem('lastChoice', JSON.stringify(city));
 }
 
+// load previous choice on load
 function chosenFromLocal() {
     // check last chosen exists or create it
     if (!localStorage.lastChoice) {

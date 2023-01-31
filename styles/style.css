@@ -32,15 +32,12 @@
 }
 
 .card-deck {
-
   flex: 1 0px !important;
-
 }
 
 @media (min-width: 750px) {
   .card-deck {
     margin: 15px 0 !important;
-    /* flex: 1 0px !important; */
   }
 }
 

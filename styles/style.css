@@ -17,6 +17,7 @@
 .searchBtn {
   color: whitesmoke;
   background-color: #5098E6;
+  flex: 1 1 auto;
 }
 
 .bannerHeading {
@@ -47,9 +48,17 @@
   flex-direction: row !important;
 }
 
-
 .jumbotron {
   background-color: white !important;
   border: 1px solid black;
   padding: 0.5rem !important;
+}
+
+.weather-search {
+  padding: 6px 15px;
+  margin: 6px 0;
+  border-radius: 6px;
+  border: 1px solid black;
+  line-height: 30px;
+  font-size: 18px;
 }
